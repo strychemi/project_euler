@@ -11,7 +11,7 @@ def eratosthenes(limit)
   (2..Math.sqrt(limit)).each do |x|
     (x**2..limit).step(x) { |y| nlist[y] = nil } if nlist[x]
   end
-  nlist.compact
+  nlist.compact!
 end
 
 def sum_primes(primes)
