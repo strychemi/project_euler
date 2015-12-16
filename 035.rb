@@ -49,6 +49,7 @@ end
 
 #prime checker from problem 7
 def is_prime?(x)
+  return false if x == 1
   return true if x == 2 || x == 3
   return false if x % 2 == 0 || x % 3 == 0
   limit = (x ** (1/2.0)).to_i
