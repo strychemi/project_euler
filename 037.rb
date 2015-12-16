@@ -11,28 +11,32 @@ NOTE: 2, 3, 5, and 7 are not considered to be truncatable primes.
 
 =end
 
+=begin
+  I found the bruteforce approach adequate for this problem.
+=end
+
 def prime_truncates
-  primes = eratosthenes(100)
+  primes = eratosthenes(1000000)
   results = []
 
   primes.each do |x|
     if x > 10
       truncate_left = x.to_s.chars.map(&:to_i)
       truncate_right = x.to_s.chars.map(&:to_i)
-      puts "#{truncate_left.inspect} #{truncate_right.inspect}"
+      #puts "#{truncate_left.inspect} #{truncate_right.inspect}"
       num_of_digits = truncate_left.length - 1
       test_cases = 0
       num_of_digits.times do
         truncate_left.shift
         truncate_right.pop
         test_cases += 1 if is_prime?(truncate_left.join.to_i) && is_prime?(truncate_right.join.to_i)
-        puts "#{truncate_left.inspect} #{truncate_right.inspect}"
+        #puts "#{truncate_left.inspect} #{truncate_right.inspect}"
       end
       results.push(x) if test_cases == num_of_digits
     end
+    break if results.length == 11
   end
-
-  puts results.inspect
+  puts results.inject(:+)
 end
 
 #sieve of eratosthenes from problem 10 and 35
@@ -44,7 +48,7 @@ def eratosthenes(limit)
   nlist.compact!
 end
 
-#prime checker from problem 7
+#prime checker from problem 7 and 35
 def is_prime?(x)
   return false if x == 1
   return true if x == 2 || x == 3
@@ -65,4 +69,3 @@ def is_prime?(x)
 end
 
 prime_truncates
-puts is_prime?(1)
