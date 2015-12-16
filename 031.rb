@@ -1,4 +1,5 @@
 # Coin sums
+
 =begin
 
 In England the currency is made up of pound, £, and pence, p, and there are eight coins in general circulation:
